@@ -4,3 +4,17 @@ Crear proyecto en React con Vite
 2. cd my-react-app
 3. npm install
 4. npm run dev
+
+=================================================================================================================
+
+1. ls para ver directorios
+2. cd Desktop/fullstack-bootcamp
+3. git status
+4. git add <nombre archivo/carpeta>
+5. git commit -m "second commit"
+6. git status
+7. git push -u origin main
+
+=================================================================================================================
+
+1. git init para inicializar proyecto en git
