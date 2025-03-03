@@ -1,8 +1,7 @@
-
-const Message = (props) => {
+const Message = ({ color, message }) => {
     return (
-        <h1 style={{ color: props.color }}>
-            {props.message}
+        <h1 style={{ color: color }}>
+            {message}
         </h1>
     )
 }
