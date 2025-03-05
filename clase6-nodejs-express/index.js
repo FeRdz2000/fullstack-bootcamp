@@ -1,7 +1,12 @@
 const express = require('express')
+const cors = require('cors')
+const logger = require('./loggerMiddleware')
+
 const app = express()
 
+app.use(cors())
 app.use(express.json()) // middleware body-parser
+app.use(logger)
 
 let notes = [
     {
@@ -65,6 +70,12 @@ app.delete('/api/notes/:id', (request, response) => {
     const id = Number(request.params.id)
     notes = notes.filter(note => note.id !== id) //  guardar notas menos la que estamos borrando
     response.status(200).end()
+})
+
+app.use((request, response, next) => {
+    response.status(404).json({
+        error: 'Página no encontrada.'
+    })
 })
 
 const PORT = 3000

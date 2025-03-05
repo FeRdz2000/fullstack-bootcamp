@@ -18,3 +18,5 @@
 1. npm uninstall eslit
 
 2. npm install standard -D -E
+
+3. npm install cors -E

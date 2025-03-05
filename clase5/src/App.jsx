@@ -25,9 +25,7 @@ function App() {
     event.preventDefault()
 
     const noteToAddToState = {
-      title: newNote,
-      body: newNote,
-      userId: 1
+      content: newNote
     }
 
     setError('')
