@@ -2,7 +2,7 @@ GET http://localhost:3000/api/notes/
 
 ###
 
-GET http://localhost:3000/api/notes/2
+GET http://localhost:3000/api/notes/67c9b773385ee5ef051c249d
 
 ###
 
@@ -10,10 +10,20 @@ POST http://localhost:3000/api/notes/
 content-type: application/json
 
 {
-    "content": "Esto es una nueva nota",
+    "content": "Esta es la segunda nota.",
     "important": true
 }
 
 ###
 
-DELETE http://localhost:3000/api/notes/2
+PUT http://localhost:3000/api/notes/67c9b773385ee5ef051c249f
+content-type: application/json
+
+{
+    "content": "Esta es la primera nota actualizada.",
+    "important": false
+}
+
+###
+
+DELETE http://localhost:3000/api/notes/67c8a7010812814b45a2d66f

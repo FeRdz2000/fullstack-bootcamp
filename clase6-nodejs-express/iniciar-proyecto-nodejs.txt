@@ -20,3 +20,7 @@
 2. npm install standard -D -E
 
 3. npm install cors -E
+
+4 npm install mongoose -E
+
+5 npm install dotenv -E

@@ -1,46 +1,41 @@
+require('dotenv').config()
+require('./mongodb')
+
 const express = require('express')
 const cors = require('cors')
 const logger = require('./loggerMiddleware')
+const Note = require('./models/Note')
+const NotFound = require('./middlewares/NotFound')
+const handleErrors = require('./middlewares/handleErrors')
 
 const app = express()
 
 app.use(cors())
 app.use(express.json()) // middleware body-parser
 app.use(logger)
-
-let notes = [
-    {
-        id: 1,
-        content: 'HTML is easy',
-        date: '2019-05-30T17:30:31.098Z',
-        important: true
-    },
-    {
-        id: 2,
-        content: 'Browser can execute only JavaScript',
-        date: '2019-05-30T18:39:34.091Z',
-        important: false
-    },
-    {
-        id: 3,
-        content: 'GET and POST are the most important methods of HTTP protocol',
-        date: '2019-05-30T19:20:14.298Z',
-        important: true
-    }
-]
+app.use('/static', express.static('images'))
 
 app.get('/', (request, response) => {
-    response.send('<h1>Hola Mundo</h1>')
+    response.send('<h1>Node App</h1>')
 })
 
 app.get('/api/notes', (request, response) => {
-    response.json(notes)
+    Note.find({}).then(notes => {
+        response.json(notes)
+    })
 })
 
-app.get('/api/notes/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const note = notes.find(note => note.id === id)
-    response.json(note)
+app.get('/api/notes/:id', (request, response, next) => {
+    const { id } = request.params
+
+    Note.findById(id).then(note => {
+        if (note) return response.json(note)
+        response.status(400).json({
+            error: 'No se ha encontrado una nota con este id.'
+        })
+    }).catch(error => {
+        next(error)
+    })
 })
 
 app.post('/api/notes/', (request, response) => {
@@ -52,33 +47,52 @@ app.post('/api/notes/', (request, response) => {
         })
     }
 
-    const ids = notes.map(note => note.id)
-    const maxId = Math.max(...ids)
-
-    const newNote = {
-        id: maxId + 1,
+    // crear instancia del modelo Note
+    const newNote = new Note({
         content: note.content,
-        important: typeof note.important !== 'undefined' ? note.important : false,
-        date: new Date().toISOString()
-    }
+        date: new Date().toISOString(),
+        important: note.important || false
+    })
 
-    notes = [...notes, newNote]
-    response.status(201).json(newNote)
-})
-
-app.delete('/api/notes/:id', (request, response) => {
-    const id = Number(request.params.id)
-    notes = notes.filter(note => note.id !== id) //  guardar notas menos la que estamos borrando
-    response.status(200).end()
-})
-
-app.use((request, response, next) => {
-    response.status(404).json({
-        error: 'Página no encontrada.'
+    newNote.save().then(savedNote => {
+        response.status(201).json(savedNote)
     })
 })
 
-const PORT = 3000
+app.put('/api/notes/:id', (request, response, next) => {
+    const { id } = request.params
+    const note = request.body
+
+    const newNoteInfo = {
+        content: note.content,
+        important: note.important
+    }
+
+    // { new: true } para devolver el nuevo valor actualizado
+
+    Note.findByIdAndUpdate(id, newNoteInfo, { new: true }).then(note => {
+        response.status(200).json(note)
+    }).catch(error => {
+        next(error)
+    })
+})
+
+app.delete('/api/notes/:id', (request, response, next) => {
+    const { id } = request.params
+
+    Note.findByIdAndDelete(id).then(note => {
+        // console.log(note) devolver objecto eliminado
+        response.status(200).end()
+    }).catch(error => {
+        next(error)
+    })
+})
+
+app.use(handleErrors)
+app.use(NotFound)
+
+const PORT = process.env.PORT
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
