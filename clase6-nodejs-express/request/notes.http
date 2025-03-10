@@ -10,13 +10,14 @@ POST http://localhost:3000/api/notes/
 content-type: application/json
 
 {
-    "content": "Esta es la segunda nota.",
-    "important": true
+    "content": "Esta es la primera nota.",
+    "important": true,
+    "userId": "67ce31fa3277a6fe64441757"
 }
 
 ###
 
-PUT http://localhost:3000/api/notes/67c9b773385ee5ef051c249f
+PUT http://localhost:3000/api/notes/67cb0a1344a9fc5f43cd868e
 content-type: application/json
 
 {
@@ -26,4 +27,19 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/notes/67c8a7010812814b45a2d66f
+DELETE http://localhost:3000/api/notes/67cb1202d1607fdb8873bb97
+
+###
+
+GET http://localhost:3000/api/users/
+
+###
+
+POST http://localhost:3000/api/users/
+content-type: application/json
+
+{
+    "username": "FeRdz",
+    "name": "Fe Mario",
+    "password": "ferdz123456"
+}

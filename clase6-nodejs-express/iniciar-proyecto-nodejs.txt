@@ -24,3 +24,30 @@
 4 npm install mongoose -E
 
 5 npm install dotenv -E
+
+6. npm install jest -D -E
+
+7. npm install cross-env -E
+
+8. npm install supertest -D -E
+
+9. npm install bcrypt -E
+
+10. npm install mongoose-unique-validator -E
+
+===========================================================================
+
+./ 
+Se usa para referirse al directorio actual en el que se está trabajando.
+
+../ 
+Se usa para referirse al directorio anterior al actual.
+
+===========================================================================
+
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+
+npm install --legacy-peer-deps
+
+npm config set legacy-peer-deps true
