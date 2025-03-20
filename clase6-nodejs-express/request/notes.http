@@ -8,11 +8,11 @@ GET http://localhost:3000/api/notes/67c9b773385ee5ef051c249d
 
 POST http://localhost:3000/api/notes/
 content-type: application/json
+Authorization: Bearer JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Y2UzMWZhMzI3N2E2ZmU2NDQ0MTc1NyIsInVzZXJuYW1lIjoiRmVSZHoiLCJpYXQiOjE3NDI0Mjk0OTh9.J0LmC-7uyIX6aTxL6y_aTGk2KJdZ1aqycC4sR1FxzEc
 
 {
-    "content": "Esta es la primera nota.",
-    "important": true,
-    "userId": "67ce31fa3277a6fe64441757"
+    "content": "Esta es la cuarta nota.",
+    "important": true
 }
 
 ###
@@ -41,5 +41,15 @@ content-type: application/json
 {
     "username": "FeRdz",
     "name": "Fe Mario",
+    "password": "ferdz123456"
+}
+
+###
+
+POST http://localhost:3000/api/login/
+content-type: application/json
+
+{
+    "username": "FeRdz",
     "password": "ferdz123456"
 }

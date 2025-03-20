@@ -35,6 +35,8 @@
 
 10. npm install mongoose-unique-validator -E
 
+11. npm install jsonwebtoken -E
+
 ===========================================================================
 
 ./ 
