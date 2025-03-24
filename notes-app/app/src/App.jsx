@@ -5,7 +5,7 @@ import { NoteForm } from './components/NoteForm.jsx'
 import { create as createNote, getAll as getAllNotes, setToken } from './services/notes.js'
 import { login } from './services/login.js'
 
-function App() {
+const App = () => {
   const [notes, setNotes] = useState([])
 
   const [loading, setLoading] = useState(false)
@@ -37,7 +37,6 @@ function App() {
 
   // Crear nota
   const addNote = (noteObject) => {
-
     createNote(noteObject)
       .then(newNote => {
         setNotes(prevNotes => prevNotes.concat(newNote))
@@ -49,7 +48,7 @@ function App() {
 
         setTimeout(() => {
           setError('')
-        }, 5000);
+        }, 5000)
       })
   }
 
@@ -75,7 +74,7 @@ function App() {
 
       setTimeout(() => {
         setError('')
-      }, 5000);
+      }, 5000)
     }
   }
 
@@ -85,8 +84,6 @@ function App() {
     setToken('')
     window.localStorage.removeItem('loggedNoteApUser')
   }
-
-
 
   return (
     <div>

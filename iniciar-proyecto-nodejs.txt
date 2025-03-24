@@ -1,0 +1,16 @@
+1. npm init -y
+
+ -- cp -r = copiar de forma recursiva la carpeta ../clase6-nodejs-express y llevarlo a la nueva carpeta /api
+
+2. cp -r ../clase6-nodejs-express ./api
+
+3. cp -r ../clase5 ./app
+
+4. npm install
+
+=========================================================================================================
+
+1. rm -rf ./api/.git (eliminar todo el historico de git)
+
+
+minuto 20:36

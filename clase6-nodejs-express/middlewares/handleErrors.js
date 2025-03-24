@@ -13,6 +13,8 @@ module.exports = (error, request, response, next) => {
         response.status(401).json({
             error: 'El token ha expirado.'
         })
+    } else if (error.name === 'TypeError') {
+        console.log('Mensaje desde el handleErrors')
     } else {
         response.status(500).end()
     }

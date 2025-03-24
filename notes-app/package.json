@@ -1,0 +1,33 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=app",
+    "start": "npm run start --workspace=api",
+    "dev:api": "npm run build && npm run dev --workspace=api"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "standard": "17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json",
+    "rules": {
+      "indent": "off",
+      "react/jsx-closing-bracket-location": "off",
+      "react/jsx-indent-props": "off"
+    },
+    "env": {
+      "jest": true
+    }
+  }
+}
